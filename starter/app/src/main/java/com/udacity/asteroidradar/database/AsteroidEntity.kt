@@ -1,16 +1,26 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.database
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Parcelize
-data class Asteroid(
+@Entity(tableName = "asteroid_table")
+class AsteroidEntity(
+
+    @PrimaryKey
     val id: Long,
+
     val codename: String,
+
     val closeApproachDate: String,
+
     val absoluteMagnitude: Double,
+
     val estimatedDiameter: Double,
+
     val relativeVelocity: Double,
+
     val distanceFromEarth: Double,
+
     val isPotentiallyHazardous: Boolean
-) : Parcelable
+)
+
