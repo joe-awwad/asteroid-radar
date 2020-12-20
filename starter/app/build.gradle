@@ -63,6 +63,9 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    // Timber Logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     // Room database
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -71,6 +74,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation "android.arch.work:work-runtime-ktx:1.0.1"
+
+    // Material design components
+    implementation "com.google.android.material:material:$material_version"
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
