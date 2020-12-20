@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
+
+        <variable
+            name="clickListener"
+            type="com.udacity.asteroidradar.main.AsteroidClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(asteroid)}"
+        android:paddingTop="@dimen/spacing_sm"
+        android:paddingBottom="@dimen/spacing_sm">
+
+        <TextView
+            android:id="@+id/codenameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{asteroid.codename}"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="68347 (2001 KB67)" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{asteroid.closeApproachDate}"
+            app:layout_constraintStart_toStartOf="@+id/item_start"
+            app:layout_constraintTop_toBottomOf="@+id/codenameText"
+            tools:text="2020-12-20" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            statusIcon="@{asteroid.potentiallyHazardous}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/dateText"
+            app:layout_constraintEnd_toEndOf="@id/item_end"
+            app:layout_constraintTop_toTopOf="@+id/codenameText"
+            tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_end"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
