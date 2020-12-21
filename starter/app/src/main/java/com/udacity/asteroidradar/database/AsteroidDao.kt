@@ -13,13 +13,13 @@ interface AsteroidDao {
     @Query("SELECT * FROM asteroid_table WHERE id = :id")
     suspend fun getById(id: Long): Asteroid
 
-    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate BETWEEN :startDate AND :endDate")
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     suspend fun getByDateBetween(startDate: String, endDate: String): List<AsteroidEntity>
 
     @Query("SELECT * FROM asteroid_table")
     suspend fun getAll(): List<AsteroidEntity>
 
-    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate BETWEEN :startDate AND :endDate")
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     fun getByDateBetweenAsLiveData(
         startDate: String,
         endDate: String
