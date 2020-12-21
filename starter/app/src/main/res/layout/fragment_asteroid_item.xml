@@ -19,14 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{()->clickListener.onClick(asteroid)}"
-        android:paddingTop="@dimen/spacing_sm"
-        android:paddingBottom="@dimen/spacing_sm">
+        android:paddingTop="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/spacing_normal">
 
         <TextView
             android:id="@+id/codenameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{asteroid.codename}"
+            android:textAppearance="@style/TextAppearance.Headline5"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="@+id/item_start"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="68347 (2001 KB67)" />
@@ -35,8 +37,10 @@
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:text="@{asteroid.closeApproachDate}"
+            android:textAppearance="@style/TextAppearance.Headline6"
+            android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="@+id/item_start"
             app:layout_constraintTop_toBottomOf="@+id/codenameText"
             tools:text="2020-12-20" />
