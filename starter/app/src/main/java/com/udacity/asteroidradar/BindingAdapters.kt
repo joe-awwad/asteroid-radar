@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
+import com.udacity.asteroidradar.api.PictureOfDayStatus
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -44,4 +46,35 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 @BindingAdapter("goneIfNotNull")
 fun goneIfNotNull(view: View, it: Any?) {
     view.visibility = if (it != null) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("pictureOfDay")
+fun bindImageOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?) {
+    pictureOfDay?.let {
+        if (pictureOfDay.isImage) {
+            Picasso.with(imageView.context)
+                .load(pictureOfDay.url)
+                .into(imageView)
+        }
+    }
+}
+
+/**
+ * Code adapted from andfun-kotlin-mars-realestate.
+ */
+@BindingAdapter("pictureOfDayStatus")
+fun bindPictureOfDayStatus(imageView: ImageView, status: PictureOfDayStatus) {
+    when (status) {
+        PictureOfDayStatus.LOADING -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.loading_animation)
+        }
+        PictureOfDayStatus.ERROR -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        PictureOfDayStatus.DONE -> {
+            imageView.visibility = View.GONE
+        }
+    }
 }

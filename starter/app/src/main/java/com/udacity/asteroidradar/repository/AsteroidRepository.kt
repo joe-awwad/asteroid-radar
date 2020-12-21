@@ -1,10 +1,9 @@
 package com.udacity.asteroidradar.repository
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.*
-import com.udacity.asteroidradar.api.AsteroidApi
+import com.udacity.asteroidradar.api.AsteroidRadarApi
 import com.udacity.asteroidradar.api.all
 import com.udacity.asteroidradar.database.AsteroidDao
 import com.udacity.asteroidradar.database.AsteroidDatabase
@@ -21,7 +20,11 @@ class AsteroidRepository(private val asteroidDao: AsteroidDao) {
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
             val asteroids =
-                AsteroidApi.asteroids.getAsteroids(currentDay(), plusDays(6), Constants.API_KEY)
+                AsteroidRadarApi.asteroids.getAsteroids(
+                    currentDay(),
+                    plusDays(6),
+                    Constants.API_KEY
+                )
 
             asteroidDao.upsert(*asteroids.all().asDatabaseModels().toTypedArray())
         }
@@ -31,6 +34,10 @@ class AsteroidRepository(private val asteroidDao: AsteroidDao) {
         withContext(Dispatchers.IO) {
             asteroidDao.deleteByDateBelow(currentDay())
         }
+    }
+
+    suspend fun getPictureOfDay(): PictureOfDay {
+        return AsteroidRadarApi.pictureOfOfDay.get(Constants.API_KEY)
     }
 
     companion object {

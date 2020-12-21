@@ -8,8 +8,7 @@ import com.udacity.asteroidradar.database.AsteroidEntity
 import com.udacity.asteroidradar.minusDays
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class AsteroidRepositoryTest {
@@ -55,5 +54,14 @@ class AsteroidRepositoryTest {
 
         assertEquals(1, asteroids.size)
         assertEquals(1L, asteroids[0].id)
+    }
+
+    @Test
+    fun getPictureOfDay() {
+        val pictureOfDay = runBlocking {
+            return@runBlocking asteroidRepository.getPictureOfDay()
+        }
+
+        assertNotNull(pictureOfDay)
     }
 }

@@ -2,7 +2,7 @@ package com.udacity.asteroidradar.service
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.udacity.asteroidradar.Constants
-import com.udacity.asteroidradar.api.AsteroidApi
+import com.udacity.asteroidradar.api.AsteroidRadarApi
 import com.udacity.asteroidradar.asDomainModels
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -17,7 +17,7 @@ class AsteroidServiceTest {
 
         val asteroids = runBlocking {
 
-            return@runBlocking AsteroidApi.asteroids.getAsteroids(
+            return@runBlocking AsteroidRadarApi.asteroids.getAsteroids(
                 startDate = "2020-10-01",
                 endDate = "2020-10-01",
                 apiKey = Constants.API_KEY

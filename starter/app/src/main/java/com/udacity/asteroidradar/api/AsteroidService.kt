@@ -5,11 +5,16 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.asDomainModels
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+
+enum class PictureOfDayStatus {
+    LOADING, DONE, ERROR
+}
 
 interface AsteroidService {
 
@@ -19,6 +24,13 @@ interface AsteroidService {
         @Query("end_date") endDate: String,
         @Query("api_key") apiKey: String
     ): AsteroidContainer
+
+}
+
+
+interface PictureOfDayService {
+    @GET("planetary/apod")
+    suspend fun get(@Query("api_key") apiKey: String): PictureOfDay
 }
 
 fun AsteroidContainer.all(): List<Asteroid> {
@@ -35,6 +47,8 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(Constants.BASE_URL)
     .build()
 
-object AsteroidApi {
+object AsteroidRadarApi {
     val asteroids: AsteroidService = retrofit.create(AsteroidService::class.java)
+
+    val pictureOfOfDay: PictureOfDayService = retrofit.create(PictureOfDayService::class.java)
 }
