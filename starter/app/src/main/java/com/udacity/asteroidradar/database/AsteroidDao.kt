@@ -25,6 +25,11 @@ interface AsteroidDao {
         endDate: String
     ): LiveData<List<AsteroidEntity>>
 
+    @Query("SELECT * FROM asteroid_table WHERE closeApproachDate = :date ORDER BY closeApproachDate ASC")
+    fun getByDateAsLiveData(
+        date: String
+    ): LiveData<List<AsteroidEntity>>
+
     @Delete
     suspend fun delete(vararg asteroids: AsteroidEntity)
 

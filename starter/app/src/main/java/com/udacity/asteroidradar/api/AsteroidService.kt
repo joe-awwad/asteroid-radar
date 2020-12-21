@@ -16,6 +16,10 @@ enum class PictureOfDayStatus {
     LOADING, DONE, ERROR
 }
 
+enum class AsteroidFilter {
+    CURRENT_DAY, CURRENT_WEEK, SAVED
+}
+
 interface AsteroidService {
 
     @GET("neo/rest/v1/feed")

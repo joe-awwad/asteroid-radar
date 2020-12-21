@@ -12,8 +12,23 @@ import kotlinx.coroutines.withContext
 
 class AsteroidRepository(private val asteroidDao: AsteroidDao) {
 
+    /**
+     * Represent the saved asteroids given the clean-refresh cycle of the data workers
+     */
     val asteroids =
         Transformations.map(asteroidDao.getByDateBetweenAsLiveData(currentDay(), plusDays(6))) {
+            it.asDomainModels()
+        }
+
+    val currentDayAsteroids =
+        Transformations.map(asteroidDao.getByDateAsLiveData(currentDay())) {
+            it.asDomainModels()
+        }
+
+    val currentWeekAsteroids =
+        Transformations.map(
+            asteroidDao.getByDateBetweenAsLiveData(firstDayOfWeek(), lastDayOfWeek())
+        ) {
             it.asDomainModels()
         }
 

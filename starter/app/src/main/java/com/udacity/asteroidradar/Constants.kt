@@ -6,5 +6,5 @@ object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
 
     // Not the most secure, but who cares for now
-    const val API_KEY = "hPsRxoa1gt06SRUdQcj1ksiB0i744BLBeQzhCu6x"
+    const val API_KEY = ""
 }
