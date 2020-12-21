@@ -53,7 +53,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/dateText"
             app:layout_constraintEnd_toEndOf="@id/item_end"
             app:layout_constraintTop_toTopOf="@+id/codenameText"
-            tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
+            tools:srcCompat="@drawable/ic_status_potentially_hazardous"
+            android:contentDescription="@string/image_of_the_day_status" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/item_start"
